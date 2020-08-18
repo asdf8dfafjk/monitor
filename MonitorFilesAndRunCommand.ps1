@@ -3,16 +3,19 @@ function SetupTimer()
 	$timer = new-object timers.timer;
 	$timer.interval = 100;
 	$timer_count=0;
+	$global:start_time=(Get-Date)
+
+
 	register-objectevent -inputobject $timer -eventname elapsed -action{
 		$timer_count +=1;
-		# write-host "timer fired for the $timer_count occassion"
+		$current_time=(Get-Date)
+		write-host "timer fired for the $timer_count occassion, at $( ($current_time-$global:start_time).TotalMilliseconds )"
 		$job_out=(receive-job -name work_job__name -erroraction silentlycontinue )
 		$job_out |% { write-host $_ }
+		$job_out |% { $_ | Out-File -Append /tmp/output }
 	}
 	
 	$timer.start()
-
-
 }
 
 
