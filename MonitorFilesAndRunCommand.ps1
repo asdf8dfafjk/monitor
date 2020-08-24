@@ -16,6 +16,11 @@ function SetupRunspace()
 			{
 				if( $sharedHT.Job -ne $null )
 				{
+					# https://stackoverflow.com/a/26027166
+
+					$job_err=($sharedHT.job.ChildJobs[0].Error.ReadAll())
+					$job_err |% { $sharedHT.Host.UI.WriteLine( $_ ) }
+
 					$job_out=(receive-job ($sharedHT.job) -erroraction silentlycontinue )
 					$job_out |% { $sharedHT.Host.UI.WriteLine( $_ ) }
 				}
