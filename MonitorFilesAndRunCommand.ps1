@@ -1,10 +1,4 @@
-$Script:ht = [hashtable]::Synchronized(@{})
-$Script:ht.Host = $Host
-$Script:ht.JobReceiveCount   = 0
-$Script:ht.Job = $null
-
-$Script:Change_count=0
-
+param($command)
 
 function SetupRunspace()
 {
@@ -50,6 +44,14 @@ class Jobber
 
 function monitorfilesandrunserver( $command )
 {
+
+	$Script:ht = [hashtable]::Synchronized(@{})
+	$Script:ht.Host = $Host
+	$Script:ht.JobReceiveCount   = 0
+	$Script:ht.Job = $null
+
+	$Script:Change_count=0
+
 	if( $command -eq $null -Or $args.Length -eq 0 )
 	{
 		Write-Host "Need parameter command and files "
@@ -82,3 +84,4 @@ function monitorfilesandrunserver( $command )
 
 }
 
+monitorfilesandrunserver $command $args
