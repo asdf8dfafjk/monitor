@@ -1,0 +1,13 @@
+https://social.technet.microsoft.com/Forums/en-US/b8f74694-77f7-4ef8-b271-ce11778833a4/let-background-job-write-to-screen?forum=winserverpowershell
+
+https://adamtheautomator.com/powershell-multithreading/#Using_ThreadSafe_Code
+
+
+Runspaces
+Both these ways bring runspace to foreground ("open the runspace") if the script hasn't completed. So useless.
+
+https://learn-powershell.net/2016/02/14/another-way-to-get-output-from-a-powershell-runspace/
+https://learn-powershell.net/2016/11/28/yet-another-way-to-get-output-from-a-runspace-reflection-edition/
+
+
+Shared data in runspace: https://learn-powershell.net/2013/04/19/sharing-variables-and-live-objects-between-powershell-runspaces/
