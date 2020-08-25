@@ -18,7 +18,7 @@ function SetupRunspace()
 				{
 					# https://stackoverflow.com/a/26027166
 
-					$job_err=($sharedHT.job.ChildJobs[0].Error.ReadAll())
+					$job_err=($sharedHT.job.Error.ReadAll())
 					$job_err |% { $sharedHT.Host.UI.WriteLine( $_ ) }
 
 					$job_out=(receive-job ($sharedHT.job) -erroraction silentlycontinue )
@@ -40,7 +40,7 @@ class Jobber
 		Remove-Job -name work_job__name -ErrorAction SilentlyContinue
 
 		Write-Host "starting job for change $($change_count+1)"
-		$work_job = start-job -name work_job__name -scriptblock $command
+		$work_job = Start-ThreadJob -name work_job__name -scriptblock $command
 
 		Return $work_job
 	}
