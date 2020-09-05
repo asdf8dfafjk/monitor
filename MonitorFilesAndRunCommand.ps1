@@ -11,7 +11,7 @@ function SetupRunspace()
 
 	$powershell.AddScript( 
 		{
-			Start-Sleep -MilliSeconds 200
+			Start-Sleep -MilliSeconds 100
 			While( $true )
 			{
 				if( $sharedHT.Job -ne $null )
